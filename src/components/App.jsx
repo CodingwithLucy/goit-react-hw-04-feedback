@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   FeedbackOptions,
   Statistics,
   Section,
   Notification,
-} from './feedback/feedback.js';
+} from './feedback/Feedback.jsx';
 import './feedback/feedback.css';
 
 const App = () => {
   const [state, setState] = useState({ good: 0, neutral: 0, bad: 0 });
 
-  const onLeaveFeedback = type => {
+  const onLeaveFeedback = useCallback(type => {
     setState(prevState => ({ ...prevState, [type]: prevState[type] + 1 }));
-  };
+  }, []);
 
   const countTotalFeedback = () => {
     return Object.values(state).reduce((a, b) => a + b, 0);
